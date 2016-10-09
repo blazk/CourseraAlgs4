@@ -1,21 +1,21 @@
 <project name="Algs4" default="compile" basedir=".">
 
     <path id="classpath">
-        <pathelement location="../lib/algs4.jar"/>
+        <pathelement location="../../lib/algs4.jar"/>
         <pathelement location="/usr/share/java/junit4.jar"/>
         <pathelement location="build"/>
     </path>
 
     <target name="compile">
         <mkdir dir="build"/>
-        <javac srcdir="." destdir="build">
+        <javac srcdir="." destdir="build" includeantruntime="false">
             <classpath refid="classpath"/>
         </javac>
     </target>
 
     <target name="run">
-        <java classname="UFMain">
-            <redirector input="UFInput.txt"/>
+        <java classname="Main">
+            <redirector input="input.txt"/>
             <classpath refid="classpath"/>
         </java>
     </target>
@@ -24,7 +24,8 @@
         <junit printsummary="on" showoutput="on" fork="true">
             <classpath refid="classpath"/>
             <formatter type="plain" usefile="false"/>
-            <test name="UFQuickFindTest"/>
+            <test name="QuickFindUFTest"/>
+            <test name="QuickUnionUFTest"/>
         </junit>
     </target>
 
