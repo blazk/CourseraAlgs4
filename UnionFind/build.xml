@@ -21,10 +21,12 @@
     </target>
 
     <target name="test" depends="compile">
-        <junit printsummary="on" showoutput="on" fork="true">
+        <junit fork="true">
             <classpath refid="classpath"/>
+            <formatter type="plain" usefile="false"/>
             <test name="QuickFindUFTest"/>
             <test name="QuickUnionUFTest"/>
+            <test name="PercolationTest"/>
         </junit>
     </target>
 
