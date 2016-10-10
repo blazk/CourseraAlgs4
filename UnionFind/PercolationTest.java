@@ -50,4 +50,23 @@ public class PercolationTest
         p.open(0, 0);
         assertTrue(p.percolates());
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testInvalidGridSize()
+    {
+        Percolation p = new Percolation(0);
+    }
+
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void testIsOpenOutsideGrid()
+    {
+        Percolation p = new Percolation(3);
+        p.isOpen(0, 3);
+    }
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void testIsFullOutsideGrid()
+    {
+        Percolation p = new Percolation(3);
+        p.isFull(0, 3);
+    }
 }
