@@ -28,6 +28,7 @@
             <test name="QuickFindUFTest"/>
             <test name="QuickUnionUFTest"/>
             <test name="PercolationTest"/>
+            <test name="PercolationStatsTest"/>
         </junit>
     </target>
 

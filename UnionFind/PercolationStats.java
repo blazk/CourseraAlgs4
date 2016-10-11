@@ -9,6 +9,7 @@ public class PercolationStats
 
    public PercolationStats(int n, int trials)    // perform trials independent experiments on an n-by-n grid
    {
+       if (n < 1 || trials < 1) throw new IllegalArgumentException();
        this.trials = trials;
        thresholds = new double[trials];
        for (int trial = 0; trial < trials; trial++)
@@ -35,16 +36,19 @@ public class PercolationStats
 
    public double stddev()                        // sample standard deviation of percolation threshold
    {
+       if (trials == 1) return Double.NaN;
        return StdStats.stddev(thresholds);
    }
 
    public double confidenceLo()                  // low  endpoint of 95% confidence interval
    {
+       if (trials == 1) return Double.NaN;
        return mean() - (1.96 * stddev()) / Math.sqrt(trials);
    }
 
    public double confidenceHi()                  // high endpoint of 95% confidence interval
    {
+       if (trials == 1) return Double.NaN;
        return mean() + (1.96 * stddev()) / Math.sqrt(trials);
    }
 
