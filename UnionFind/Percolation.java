@@ -40,19 +40,22 @@ public class Percolation
            int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
-       i++; j--;
+       i++;
+       j--;
        if (j >= 1)
        {
            int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
-       i++; j++;
+       i++;
+       j++;
        if (i <= n)
        {
            int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
-       i--; j++;
+       i--;
+       j++;
        if (j <= n)
        {
            int b = idx(i, j);
@@ -71,7 +74,7 @@ public class Percolation
    {
        if (!coordsValid(i, j))
            throw new IndexOutOfBoundsException();
-       return grid[idx(i, j)] == 0;
+       return uf.connected(n*n, idx(i, j));
    }
 
    public boolean percolates()             // does the system percolate?

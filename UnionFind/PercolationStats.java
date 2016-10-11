@@ -16,7 +16,7 @@ public class PercolationStats
        {
            Percolation p = new Percolation(n);
            int threshold = 0;
-           while(true)
+           while (true)
            {
                int i = StdRandom.uniform(1, n + 1);
                int j = StdRandom.uniform(1, n + 1);
@@ -59,6 +59,7 @@ public class PercolationStats
        PercolationStats ps = new PercolationStats(n, trials);
        StdOut.println("mean                    = " + Double.toString(ps.mean()));
        StdOut.println("stddev                  = " + Double.toString(ps.stddev()));
-       StdOut.println("95% confidence interval = " + Double.toString(ps.confidenceLo()) + ", " + Double.toString(ps.confidenceHi()));
+       StdOut.println("95% confidence interval = " + Double.toString(ps.confidenceLo())
+                                                   + ", " + Double.toString(ps.confidenceHi()));
    }
 }
