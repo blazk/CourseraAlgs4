@@ -14,9 +14,10 @@
     </target>
 
     <target name="run">
-        <java classname="Main">
-            <redirector input="input.txt"/>
+        <java classname="PercolationStats">
             <classpath refid="classpath"/>
+            <arg value="200"/>
+            <arg value="100"/>
         </java>
     </target>
 

@@ -16,41 +16,46 @@ public class Percolation
 
    private boolean coordsValid(int i, int j)
    {
-       return i >= 0 && i < n && j >= 0 && j < n;
+       return i >= 1 && i <= n && j >= 1 && j <= n;
+   }
+
+   private int idx(int i, int j)
+   {
+       return (i - 1) * n + (j - 1);
    }
 
    public void open(int i, int j)          // open site (row i, column j) if it is not open already
    {
        if (isOpen(i, j))
            return;
-       int a = i * n + j;
+       int a = idx(i, j);
        grid[a] = 1;
        // if first or last row, connect to virtual site
-       if (i == 0) uf.union(a, n * n);
-       if (i == n - 1) uf.union(a, n * n + 1);
+       if (i == 1) uf.union(a, n * n);
+       if (i == n) uf.union(a, n * n + 1);
        // connect to neighbours if they are open
        i--;
-       if (i >= 0)
+       if (i >= 1)
        {
-           int b = i * n + j;
+           int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
        i++; j--;
-       if (j >= 0)
+       if (j >= 1)
        {
-           int b = i * n + j;
+           int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
        i++; j++;
-       if (i < n)
+       if (i <= n)
        {
-           int b = i * n + j;
+           int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
        i--; j++;
-       if (j < n)
+       if (j <= n)
        {
-           int b = i * n + j;
+           int b = idx(i, j);
            if (isOpen(i, j)) uf.union(a, b);
        }
    }
@@ -59,14 +64,14 @@ public class Percolation
    {
        if (!coordsValid(i, j))
            throw new IndexOutOfBoundsException();
-       return grid[i * n + j] == 1;
+       return grid[idx(i, j)] == 1;
    }
 
    public boolean isFull(int i, int j)     // is site (row i, column j) full?
    {
        if (!coordsValid(i, j))
            throw new IndexOutOfBoundsException();
-       return grid[i * n + j] == 0;
+       return grid[idx(i, j)] == 0;
    }
 
    public boolean percolates()             // does the system percolate?
